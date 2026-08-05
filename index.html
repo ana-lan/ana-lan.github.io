@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Anagha Langhe // terminal</title>
-<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;700&family=Fira+Code:wght@300;400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;700&family=Fira+Code:wght@300;400;500&family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
   :root {
     --bg:       #080d14;
@@ -22,6 +22,8 @@
     --red:      #ff3366;
     --yellow:   #ffcc00;
     --font:     'JetBrains Mono', 'Fira Code', monospace;
+    --font-display: 'Space Grotesk', var(--font);
+    --font-body: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
   }
 
   * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -34,7 +36,7 @@
   }
 
   body {
-    font-family: var(--font);
+    font-family: var(--font-body);
     background: var(--bg);
     color: var(--white);
     min-height: 100vh;
@@ -86,6 +88,7 @@
     overflow-y: auto;
     overflow-x: hidden;
     overflow-x: clip;
+    font-family: var(--font);
   }
 
   .sidebar-header {
@@ -124,7 +127,7 @@
     font-size: 15px;
     font-weight: 700;
     color: var(--cyan);
-    text-shadow: 0 0 12px rgba(0,212,255,0.5);
+    text-shadow: 0 0 8px rgba(0,212,255,0.35);
     display: block;
   }
 
@@ -191,6 +194,13 @@
     color: var(--green);
     font-size: 11px;
     min-width: 18px;
+    font-family: var(--font);
+  }
+
+  .nav-label {
+    font-family: var(--font-body);
+    font-size: 13.5px;
+    font-weight: 500;
   }
 
   .nav-item:hover .nav-prefix { color: var(--cyan); }
@@ -260,11 +270,153 @@
     justify-content: center;
     padding: 40px;
     position: relative;
+    overflow: hidden;
+  }
+
+  .hero-glow {
+    position: absolute;
+    width: 480px;
+    height: 480px;
+    left: 0; top: 0;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(0,212,255,0.14), rgba(0,102,255,0.05) 45%, transparent 72%);
+    transform: translate(-50%, -50%);
+    pointer-events: none;
+    opacity: 0;
+    transition: opacity 0.4s ease;
+    z-index: 0;
+  }
+
+  .hero-grid {
+    display: grid;
+    grid-template-columns: 1.15fr 0.85fr;
+    gap: 28px;
+    max-width: 1080px;
+    width: 100%;
+    align-items: stretch;
+    position: relative;
+    z-index: 1;
+  }
+
+  @media (max-width: 860px) {
+    .hero-grid { grid-template-columns: 1fr; }
   }
 
   .hero-terminal {
-    max-width: 720px;
     width: 100%;
+    min-width: 0;
+  }
+
+  .hero-card {
+    background: var(--bg2);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 0 0 1px rgba(0,102,255,0.1), 0 20px 60px rgba(0,0,0,0.6), 0 0 40px rgba(0,212,255,0.04);
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
+    font-family: var(--font);
+  }
+
+  .hero-card-body {
+    padding: 22px 24px 24px;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+
+  .hero-avatar {
+    width: 48px;
+    height: 48px;
+    border-radius: 8px;
+    background: linear-gradient(135deg, var(--blue), var(--cyan));
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+    font-size: 16px;
+    color: #04101c;
+    margin-bottom: 4px;
+  }
+
+  .hero-card-name {
+    font-family: var(--font-display);
+    font-size: 20px;
+    font-weight: 700;
+    color: var(--white);
+  }
+
+  .hero-card-role {
+    font-family: var(--font-body);
+    font-size: 13px;
+    color: var(--green);
+    opacity: 0.9;
+    margin-top: 3px;
+  }
+
+  .hero-pills {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+  }
+
+  .pill {
+    font-size: 10.5px;
+    padding: 3px 10px;
+    border: 1px solid rgba(0,212,255,0.25);
+    border-radius: 20px;
+    color: var(--cyan);
+    background: rgba(0,212,255,0.05);
+    white-space: nowrap;
+  }
+
+  .hero-badges {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-top: -6px;
+  }
+
+  .badge-status {
+    font-size: 10.5px;
+    color: var(--green);
+    background: rgba(0,255,136,0.07);
+    border: 1px solid rgba(0,255,136,0.25);
+    padding: 3px 9px;
+    border-radius: 20px;
+  }
+
+  .badge-loc {
+    font-size: 10.5px;
+    color: var(--muted);
+    border: 1px solid var(--border);
+    padding: 3px 9px;
+    border-radius: 20px;
+  }
+
+  .hero-stats {
+    display: flex;
+    gap: 14px;
+    border-top: 1px solid var(--border);
+    padding-top: 14px;
+  }
+
+  .hstat { flex: 1; }
+
+  .hstat-num {
+    font-size: 19px;
+    font-weight: 700;
+    color: var(--green);
+    text-shadow: 0 0 10px rgba(0,255,136,0.3);
+  }
+
+  .hstat-label {
+    font-size: 9.5px;
+    color: var(--muted);
+    margin-top: 4px;
+    line-height: 1.4;
+    letter-spacing: 0.01em;
   }
 
   .terminal-window {
@@ -273,6 +425,7 @@
     border-radius: 8px;
     overflow: hidden;
     box-shadow: 0 0 0 1px rgba(0,102,255,0.1), 0 20px 60px rgba(0,0,0,0.6), 0 0 40px rgba(0,212,255,0.04);
+    font-family: var(--font);
   }
 
   .tw-bar {
@@ -320,9 +473,10 @@
   .tw-big {
     font-size: 22px;
     font-weight: 700;
+    font-family: var(--font-display);
     color: var(--cyan);
-    text-shadow: 0 0 20px rgba(0,212,255,0.4);
-    letter-spacing: 0.02em;
+    text-shadow: 0 0 12px rgba(0,212,255,0.25);
+    letter-spacing: 0.01em;
   }
 
   .hero-links {
@@ -349,6 +503,39 @@
     box-shadow: 0 0 10px rgba(0,212,255,0.2);
   }
 
+  /* ── FLAGSHIP PROJECT ── */
+  .flagship-project {
+    background: var(--bg2);
+    border: 1px solid rgba(0,212,255,0.35);
+    border-radius: 8px;
+    overflow: hidden;
+    margin-bottom: 24px;
+    box-shadow: 0 0 0 1px rgba(0,212,255,0.08), 0 20px 50px rgba(0,0,0,0.5), 0 0 30px rgba(0,212,255,0.06);
+  }
+
+  .flagship-header {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 12px;
+    flex-wrap: wrap;
+    margin-bottom: 10px;
+  }
+
+  .proj-name-lg {
+    font-family: var(--font-display);
+    font-size: 20px;
+    font-weight: 700;
+    color: var(--white);
+  }
+
+  .proj-desc-lg {
+    font-size: 14.5px;
+    line-height: 1.6;
+    color: #b3c2d1;
+    margin-bottom: 14px;
+  }
+
   /* ── SECTIONS ── */
   .section {
     padding: 60px 40px;
@@ -358,29 +545,52 @@
 
   .section-header {
     display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 8px;
+    margin-bottom: 36px;
+  }
+
+  .section-eyebrow {
+    display: flex;
     align-items: center;
-    gap: 12px;
-    margin-bottom: 32px;
+    gap: 10px;
+    font-family: var(--font);
   }
 
   .section-prompt {
     color: var(--green);
-    font-size: 13px;
+    font-size: 12px;
   }
 
   .section-cmd {
-    font-size: 20px;
-    font-weight: 700;
-    color: var(--white);
+    font-size: 12px;
+    font-weight: 500;
+    color: var(--muted);
+    letter-spacing: 0.02em;
   }
 
   .section-cmd span { color: var(--cyan); }
+
+  .section-title-row {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    width: 100%;
+  }
+
+  .section-title {
+    font-family: var(--font-display);
+    font-size: 30px;
+    font-weight: 700;
+    color: var(--white);
+    letter-spacing: -0.01em;
+  }
 
   .section-line {
     flex: 1;
     height: 1px;
     background: linear-gradient(to right, var(--border), transparent);
-    margin-left: 12px;
   }
 
   /* ── CARDS ── */
@@ -405,6 +615,7 @@
     padding: 8px 14px;
     background: var(--bg3);
     border-bottom: 1px solid var(--border);
+    font-family: var(--font);
   }
 
   .card-bar-title {
@@ -427,6 +638,7 @@
 
   .card-body {
     padding: 20px 24px;
+    font-family: var(--font-body);
   }
 
   /* experience card */
@@ -439,19 +651,38 @@
     gap: 8px;
   }
 
+  .exp-title-group {
+    display: flex;
+    gap: 12px;
+    align-items: flex-start;
+  }
+
+  .exp-logo {
+    width: 38px;
+    height: 38px;
+    border-radius: 7px;
+    object-fit: contain;
+    background: var(--bg3);
+    padding: 5px;
+    flex-shrink: 0;
+    margin-top: 1px;
+  }
+
   .exp-role {
-    font-size: 15px;
+    font-family: var(--font-display);
+    font-size: 18px;
     font-weight: 700;
     color: var(--white);
   }
 
   .exp-company {
-    font-size: 12px;
+    font-size: 13px;
     color: var(--blue);
-    margin-top: 3px;
+    margin-top: 4px;
   }
 
   .exp-date {
+    font-family: var(--font);
     font-size: 11px;
     color: var(--muted);
     white-space: nowrap;
@@ -462,6 +693,7 @@
     flex-wrap: wrap;
     gap: 6px;
     margin-bottom: 14px;
+    font-family: var(--font);
   }
 
   .stack-tag {
@@ -476,8 +708,9 @@
   .exp-bullets { list-style: none; }
 
   .exp-bullets li {
-    font-size: 12px;
-    color: #8899aa;
+    font-size: 14px;
+    line-height: 1.6;
+    color: #b3c2d1;
     padding: 3px 0;
     padding-left: 16px;
     position: relative;
@@ -525,10 +758,11 @@
     transition: width 0.4s ease;
   }
 
-  .proj-body { padding: 16px 18px; }
+  .proj-body { padding: 16px 18px; font-family: var(--font-body); }
 
   .proj-name {
-    font-size: 14px;
+    font-family: var(--font-display);
+    font-size: 15.5px;
     font-weight: 700;
     color: var(--white);
     margin-bottom: 6px;
@@ -538,6 +772,7 @@
   }
 
   .proj-link {
+    font-family: var(--font);
     color: var(--muted);
     text-decoration: none;
     font-size: 11px;
@@ -546,15 +781,16 @@
   .proj-link:hover { color: var(--cyan); }
 
   .proj-date {
+    font-family: var(--font);
     font-size: 10px;
     color: var(--muted);
     margin-bottom: 8px;
   }
 
   .proj-desc {
-    font-size: 12px;
-    color: #6a7f95;
-    line-height: 1.65;
+    font-size: 13px;
+    color: #92a4b8;
+    line-height: 1.6;
     margin-bottom: 12px;
   }
 
@@ -562,6 +798,7 @@
     display: flex;
     flex-wrap: wrap;
     gap: 5px;
+    font-family: var(--font);
   }
 
   .proj-tag {
@@ -588,6 +825,7 @@
   }
 
   .skill-cat-name {
+    font-family: var(--font);
     font-size: 11px;
     color: var(--cyan);
     letter-spacing: 0.1em;
@@ -607,20 +845,44 @@
   .skill-list {
     display: flex;
     flex-direction: column;
-    gap: 5px;
+    gap: 7px;
   }
 
   .skill-row {
     display: flex;
     align-items: center;
     gap: 8px;
-    font-size: 12px;
-    color: #8899aa;
+    font-family: var(--font-body);
+    font-size: 13px;
+    color: #b3c2d1;
   }
 
   .skill-row::before {
     content: '-';
     color: var(--green);
+  }
+
+  .skill-icon {
+    width: 16px;
+    height: 16px;
+    object-fit: contain;
+    border-radius: 3px;
+    flex-shrink: 0;
+    background: rgba(255,255,255,0.03);
+  }
+
+  .skill-icon-generic {
+    width: 16px;
+    height: 16px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 10px;
+    color: var(--cyan);
+    border: 1px solid var(--border);
+    border-radius: 3px;
+    background: rgba(0,212,255,0.05);
+    flex-shrink: 0;
   }
 
   /* education */
@@ -642,9 +904,9 @@
   }
 
   .edu-info {}
-  .edu-degree { font-size: 14px; font-weight: 700; color: var(--white); }
-  .edu-school { font-size: 12px; color: var(--blue); margin: 3px 0; }
-  .edu-meta { font-size: 11px; color: var(--muted); line-height: 1.6; }
+  .edu-degree { font-family: var(--font-display); font-size: 16px; font-weight: 700; color: var(--white); }
+  .edu-school { font-family: var(--font-body); font-size: 13px; color: var(--blue); margin: 4px 0; }
+  .edu-meta { font-family: var(--font-body); font-size: 12px; color: var(--muted); line-height: 1.6; }
   .edu-gpa { color: var(--green); font-weight: 600; }
 
   /* achievements */
@@ -657,9 +919,9 @@
   }
   .ach-item:last-child { border-bottom: none; }
   .ach-icon { color: var(--yellow); font-size: 14px; flex-shrink: 0; margin-top: 2px; }
-  .ach-title { font-size: 12px; font-weight: 600; color: var(--white); margin-bottom: 3px; }
-  .ach-sub { font-size: 11px; color: var(--muted); }
-  .ach-link { color: var(--cyan); text-decoration: none; }
+  .ach-title { font-family: var(--font-display); font-size: 14px; font-weight: 600; color: var(--white); margin-bottom: 3px; }
+  .ach-sub { font-family: var(--font-body); font-size: 12.5px; color: var(--muted); }
+  .ach-link { font-family: var(--font); color: var(--cyan); text-decoration: none; }
   .ach-link:hover { text-decoration: underline; }
 
   /* contact */
@@ -691,6 +953,7 @@
     display: flex;
     align-items: center;
     gap: 10px;
+    font-family: var(--font);
     font-size: 12px;
     color: #8899aa;
   }
@@ -787,7 +1050,7 @@
     gap: 12px;
   }
 
-  .footer-left { font-size: 11px; color: var(--muted); }
+  .footer-left { font-family: var(--font); font-size: 11px; color: var(--muted); }
   .footer-left span { color: var(--cyan); }
 
   .social-row {
@@ -1018,7 +1281,7 @@
     </div>
     <div class="logo-area" id="logo-click">
       <img src="assets/Anagha Logo.png" alt="Anagha Langhe" style="width:140px;max-width:100%;height:auto;display:block;margin-bottom:6px;">
-      <span class="logo-sub">// MS CS · UT Dallas</span>
+      <span class="logo-sub">MS CS · UT Dallas</span>
       <span class="logo-click-hint">[click 5× for secret]</span>
     </div>
   </div>
@@ -1026,25 +1289,25 @@
   <nav class="sidebar-nav">
     <div class="nav-section-label">navigation</div>
     <a href="#hero" class="nav-item active" data-section="hero">
-      <span class="nav-prefix">~$</span> ./home
+      <span class="nav-prefix">~$</span> <span class="nav-label">Home</span>
     </a>
     <a href="#experience" class="nav-item" data-section="experience">
-      <span class="nav-prefix">~$</span> ls experience
+      <span class="nav-prefix">~$</span> <span class="nav-label">Experience</span>
     </a>
     <a href="#projects" class="nav-item" data-section="projects">
-      <span class="nav-prefix">~$</span> ls projects
+      <span class="nav-prefix">~$</span> <span class="nav-label">Projects</span>
     </a>
     <a href="#skills" class="nav-item" data-section="skills">
-      <span class="nav-prefix">~$</span> cat skills.json
+      <span class="nav-prefix">~$</span> <span class="nav-label">Skills</span>
     </a>
     <a href="#education" class="nav-item" data-section="education">
-      <span class="nav-prefix">~$</span> cat education.md
+      <span class="nav-prefix">~$</span> <span class="nav-label">Education</span>
     </a>
     <a href="#achievements" class="nav-item" data-section="achievements">
-      <span class="nav-prefix">~$</span> ls ./achievements
+      <span class="nav-prefix">~$</span> <span class="nav-label">Achievements</span>
     </a>
     <a href="#contact" class="nav-item" data-section="contact">
-      <span class="nav-prefix">~$</span> ping anagha
+      <span class="nav-prefix">~$</span> <span class="nav-label">Contact</span>
     </a>
 
     <div class="nav-section-label" style="margin-top:12px">status</div>
@@ -1073,16 +1336,46 @@
 
   <!-- HERO -->
   <section id="hero">
-    <div class="hero-terminal">
-      <div class="terminal-window">
-        <div class="tw-bar">
-          <div class="dot dot-red"></div>
-          <div class="dot dot-yellow"></div>
-          <div class="dot dot-green"></div>
-          <span class="tw-title">welcome.sh — executing</span>
+    <div class="hero-glow" id="hero-glow"></div>
+    <div class="hero-grid">
+      <div class="hero-terminal">
+        <div class="terminal-window">
+          <div class="tw-bar">
+            <div class="dot dot-red"></div>
+            <div class="dot dot-yellow"></div>
+            <div class="dot dot-green"></div>
+            <span class="tw-title">welcome.sh — executing</span>
+          </div>
+          <div class="tw-body">
+            <div class="typewriter-output" id="hero-output"></div>
+          </div>
         </div>
-        <div class="tw-body">
-          <div class="typewriter-output" id="hero-output"></div>
+      </div>
+
+      <div class="hero-card">
+        <div class="card-bar">
+          <div class="dot dot-red"></div><div class="dot dot-yellow"></div><div class="dot dot-green"></div>
+          <span class="card-bar-title">whoami --card</span>
+        </div>
+        <div class="hero-card-body">
+          <div class="hero-avatar">AL</div>
+          <div>
+            <div class="hero-card-name">Anagha Langhe</div>
+            <div class="hero-card-role">ML / Data / Software Engineer</div>
+          </div>
+          <div class="hero-badges">
+            <span class="badge-status">● open to work</span>
+            <span class="badge-loc">📍 Dallas, TX</span>
+          </div>
+          <div class="hero-pills">
+            <span class="pill">Python</span><span class="pill">PyTorch</span><span class="pill">AWS</span>
+            <span class="pill">Kafka · Spark</span><span class="pill">RAG / LLMs</span><span class="pill">React · Node</span>
+          </div>
+          <div class="hero-links">
+            <a href="https://github.com/ana-lan" class="hlink" target="_blank">↗ github</a>
+            <a href="https://www.linkedin.com/in/anagha-langhe" class="hlink" target="_blank">↗ linkedin</a>
+            <a href="mailto:anagha12.langhe@gmail.com" class="hlink">↗ email</a>
+          </div>
         </div>
       </div>
     </div>
@@ -1091,9 +1384,14 @@
   <!-- EXPERIENCE -->
   <section class="section" id="experience">
     <div class="section-header">
-      <span class="section-prompt">~$</span>
-      <span class="section-cmd">ls <span>experience/</span></span>
-      <div class="section-line"></div>
+      <div class="section-eyebrow">
+        <span class="section-prompt">~$</span>
+        <span class="section-cmd">ls <span>experience/</span></span>
+      </div>
+      <div class="section-title-row">
+        <h2 class="section-title">Experience</h2>
+        <div class="section-line"></div>
+      </div>
     </div>
 
     <div class="card">
@@ -1104,9 +1402,12 @@
       </div>
       <div class="card-body">
         <div class="exp-header">
-          <div>
-            <div class="exp-role">Teaching Assistant – Data Structures & Algorithms</div>
-            <div class="exp-company">The University of Texas at Dallas</div>
+          <div class="exp-title-group">
+            <img src="assets/utd.webp" class="exp-logo" alt="">
+            <div>
+              <div class="exp-role">Teaching Assistant – Data Structures & Algorithms</div>
+              <div class="exp-company">The University of Texas at Dallas</div>
+            </div>
           </div>
           <div class="exp-date">Sep 2025 → May 2026</div>
         </div>
@@ -1129,9 +1430,12 @@
       </div>
       <div class="card-body">
         <div class="exp-header">
-          <div>
-            <div class="exp-role">Data & Machine Learning Intern</div>
-            <div class="exp-company">Defence Research & Development Organisation (DRDO), India</div>
+          <div class="exp-title-group">
+            <img src="assets/drdo.avif" class="exp-logo" alt="">
+            <div>
+              <div class="exp-role">Data & Machine Learning Intern</div>
+              <div class="exp-company">Defence Research & Development Organisation (DRDO), India</div>
+            </div>
           </div>
           <div class="exp-date">Jul 2023 → Dec 2023</div>
         </div>
@@ -1157,9 +1461,12 @@
       </div>
       <div class="card-body">
         <div class="exp-header">
-          <div>
-            <div class="exp-role">Machine Learning Intern</div>
-            <div class="exp-company">MIT World Peace University × Capgemini</div>
+          <div class="exp-title-group">
+            <img src="assets/capgemini.svg" class="exp-logo" alt="">
+            <div>
+              <div class="exp-role">Machine Learning Intern</div>
+              <div class="exp-company">MIT World Peace University × Capgemini</div>
+            </div>
           </div>
           <div class="exp-date">Jul 2022 → Jun 2023</div>
         </div>
@@ -1179,9 +1486,38 @@
   <!-- PROJECTS -->
   <section class="section" id="projects">
     <div class="section-header">
-      <span class="section-prompt">~$</span>
-      <span class="section-cmd">ls <span>projects/ --sort=date</span></span>
-      <div class="section-line"></div>
+      <div class="section-eyebrow">
+        <span class="section-prompt">~$</span>
+        <span class="section-cmd">ls <span>projects/ --sort=date</span></span>
+      </div>
+      <div class="section-title-row">
+        <h2 class="section-title">Projects</h2>
+        <div class="section-line"></div>
+      </div>
+    </div>
+
+    <div class="flagship-project">
+      <div class="card-bar">
+        <div class="dot dot-red"></div><div class="dot dot-yellow"></div><div class="dot dot-green"></div>
+        <span class="card-bar-title">activation_lens.py</span>
+        <span class="card-bar-tag tag-cyan">★ flagship — mech interp / AI safety</span>
+      </div>
+      <div class="card-body">
+        <div class="flagship-header">
+          <div class="proj-name-lg">ActivationLens <a href="https://github.com/ana-lan/activation-lens" class="proj-link" target="_blank">↗ github </a><a href="https://activation-lens.vercel.app/" class="proj-link" target="_blank">↗ app</a></div>
+          <div class="proj-date">Jul 2026</div>
+        </div>
+        <div class="proj-desc-lg">Mechanistic interpretability & inference-safety research on GPT-2-small — training sparse autoencoders from scratch, building a live harmful-content safety monitor, and optimizing it to run in production.</div>
+        <ul class="exp-bullets">
+          <li>Trained a <strong>sparse autoencoder</strong> (768→8,192 features) on GPT-2-small's layer-6 residual stream via TransformerLens; diagnosed 52–82% dead-feature collapse and resolved it to <strong>0.77%</strong> via decoder normalization and periodic resampling.</li>
+          <li>Built a 100-feature regularized probe on SAE activations for harmful-content detection (<strong>0.796 AUROC</strong>), converted into a live per-token safety monitor achieving <strong>0.758 AUROC</strong> and <strong>91.6% recall</strong>.</li>
+          <li>Designed an optimized one-pass monitoring kernel, cutting live-monitor overhead from <strong>4.12% to 0.66%</strong> vs. naive full-SAE inference.</li>
+        </ul>
+        <div class="proj-stack">
+          <span class="proj-tag">PyTorch</span><span class="proj-tag">TransformerLens</span><span class="proj-tag">Sparse Autoencoders</span>
+          <span class="proj-tag">FastAPI</span><span class="proj-tag">Next.js</span>
+        </div>
+      </div>
     </div>
 
     <div class="projects-grid">
@@ -1189,12 +1525,25 @@
       <div class="project-card">
         <div class="proj-accent"></div>
         <div class="proj-body">
+          <div class="proj-name">RAG Eval Sidekick <a href="https://github.com/ana-lan/openai-build-week" class="proj-link" target="_blank">↗ github</a></div>
+          <div class="proj-date">OpenAI Build Week</div>
+          <div class="proj-desc">A full-stack tool built during OpenAI's Build Week to help developers evaluate and debug their RAG pipelines — a Python backend paired with a dedicated frontend for running evals against sample datasets and inspecting retrieval quality.</div>
+          <div class="proj-stack">
+            <span class="proj-tag">Python</span><span class="proj-tag">RAG</span><span class="proj-tag">LLM Evals</span>
+            <span class="proj-tag">Full-Stack</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="project-card">
+        <div class="proj-accent"></div>
+        <div class="proj-body">
           <div class="proj-name">DocumentSync AI <a href="https://github.com/ana-lan/DocumentSync-Ai-RAG-Based-QA-System-for-Document-Analysis" class="proj-link" target="_blank">↗ github</a></div>
           <div class="proj-date">Jun 2025 – Jul 2025</div>
-          <div class="proj-desc">RAG-powered Q&A system processing 100+ page PDFs. 85% answer accuracy at sub-5s latency, cutting hallucination rate by 18% via chunking strategy tuning.</div>
+          <div class="proj-desc">RAG pipeline (LangChain + ChromaDB + Sentence Transformers) ingesting 30 ArXiv PDFs across 4 chunking strategies. Evaluated with RAGAS across 120 LLM-as-judge calls — best strategy improved context precision by 59% and context recall 3×.</div>
           <div class="proj-stack">
             <span class="proj-tag">LangChain</span><span class="proj-tag">RAG</span><span class="proj-tag">ChromaDB</span>
-            <span class="proj-tag">Streamlit</span><span class="proj-tag">Sentence Transformers</span>
+            <span class="proj-tag">RAGAS</span><span class="proj-tag">Sentence Transformers</span>
           </div>
         </div>
       </div>
@@ -1270,78 +1619,83 @@
   <!-- SKILLS -->
   <section class="section" id="skills">
     <div class="section-header">
-      <span class="section-prompt">~$</span>
-      <span class="section-cmd">cat <span>skills.json</span></span>
-      <div class="section-line"></div>
+      <div class="section-eyebrow">
+        <span class="section-prompt">~$</span>
+        <span class="section-cmd">cat <span>skills.json</span></span>
+      </div>
+      <div class="section-title-row">
+        <h2 class="section-title">Skills</h2>
+        <div class="section-line"></div>
+      </div>
     </div>
 
     <div class="skills-grid">
       <div class="skill-category">
         <div class="skill-cat-name">Languages</div>
         <div class="skill-list">
-          <div class="skill-row">Python</div>
-          <div class="skill-row">Java</div>
-          <div class="skill-row">C++</div>
-          <div class="skill-row">JavaScript</div>
-          <div class="skill-row">SQL</div>
+          <div class="skill-row"><img class="skill-icon" src="assets/python.png" alt=""><span>Python</span></div>
+          <div class="skill-row"><img class="skill-icon" src="assets/java.svg" alt=""><span>Java</span></div>
+          <div class="skill-row"><img class="skill-icon" src="assets/cpp.png" alt=""><span>C++</span></div>
+          <div class="skill-row"><img class="skill-icon" src="https://cdn.simpleicons.org/javascript/F7DF1E" alt=""><span>JavaScript</span></div>
+          <div class="skill-row"><span class="skill-icon skill-icon-generic">▤</span><span>SQL</span></div>
         </div>
       </div>
 
       <div class="skill-category">
         <div class="skill-cat-name">ML / AI</div>
         <div class="skill-list">
-          <div class="skill-row">TensorFlow / Keras</div>
-          <div class="skill-row">PyTorch</div>
-          <div class="skill-row">Scikit-Learn</div>
-          <div class="skill-row">ONNX Runtime</div>
-          <div class="skill-row">LangChain / RAG</div>
-          <div class="skill-row">Hugging Face</div>
+          <div class="skill-row"><img class="skill-icon" src="assets/tensorflow.svg" alt=""><span>TensorFlow / Keras</span></div>
+          <div class="skill-row"><img class="skill-icon" src="assets/pytorch.svg" alt=""><span>PyTorch</span></div>
+          <div class="skill-row"><img class="skill-icon" src="assets/sklearn.png" alt=""><span>Scikit-Learn</span></div>
+          <div class="skill-row"><img class="skill-icon" src="https://cdn.simpleicons.org/huggingface/FFD21E" alt=""><span>Hugging Face</span></div>
+          <div class="skill-row"><img class="skill-icon" src="assets/langchain.svg" alt=""><span>LangChain / RAG</span></div>
+          <div class="skill-row"><span class="skill-icon skill-icon-generic">◆</span><span>ONNX Runtime</span></div>
         </div>
       </div>
 
       <div class="skill-category">
         <div class="skill-cat-name">Data Engineering</div>
         <div class="skill-list">
-          <div class="skill-row">Apache Kafka</div>
-          <div class="skill-row">Apache Spark</div>
-          <div class="skill-row">Apache Airflow</div>
-          <div class="skill-row">AWS Glue / Lambda</div>
-          <div class="skill-row">Hadoop / Hive</div>
-          <div class="skill-row">dbt / Databricks</div>
+          <div class="skill-row"><img class="skill-icon" src="https://cdn.simpleicons.org/apachekafka/00d4ff" alt=""><span>Apache Kafka</span></div>
+          <div class="skill-row"><img class="skill-icon" src="assets/spark.svg" alt=""><span>Apache Spark</span></div>
+          <div class="skill-row"><img class="skill-icon" src="assets/airflow.png" alt=""><span>Apache Airflow</span></div>
+          <div class="skill-row"><img class="skill-icon" src="assets/aws glue.png" alt=""><span>AWS Glue / Lambda</span></div>
+          <div class="skill-row"><img class="skill-icon" src="assets/hadoop.png" alt=""><span>Hadoop / Hive</span></div>
+          <div class="skill-row"><img class="skill-icon" src="https://cdn.simpleicons.org/dbt/FF694B" alt=""><span>dbt / Databricks</span></div>
         </div>
       </div>
 
       <div class="skill-category">
         <div class="skill-cat-name">Cloud / DevOps</div>
         <div class="skill-list">
-          <div class="skill-row">AWS (S3, Athena, Redshift)</div>
-          <div class="skill-row">AWS QuickSight</div>
-          <div class="skill-row">Docker</div>
-          <div class="skill-row">Git / GitHub</div>
-          <div class="skill-row">Linux / ROS</div>
-          <div class="skill-row">CI/CD</div>
+          <div class="skill-row"><img class="skill-icon" src="assets/aws.png" alt=""><span>AWS (S3, Athena, Redshift)</span></div>
+          <div class="skill-row"><img class="skill-icon" src="assets/aws quicksight.png" alt=""><span>AWS QuickSight</span></div>
+          <div class="skill-row"><img class="skill-icon" src="https://cdn.simpleicons.org/docker/2496ED" alt=""><span>Docker</span></div>
+          <div class="skill-row"><img class="skill-icon" src="assets/github.png" alt=""><span>Git / GitHub</span></div>
+          <div class="skill-row"><img class="skill-icon" src="assets/linux.png" alt=""><span>Linux / ROS</span></div>
+          <div class="skill-row"><img class="skill-icon" src="https://cdn.simpleicons.org/githubactions/2088FF" alt=""><span>CI/CD</span></div>
         </div>
       </div>
 
       <div class="skill-category">
         <div class="skill-cat-name">Databases</div>
         <div class="skill-list">
-          <div class="skill-row">MySQL</div>
-          <div class="skill-row">MongoDB</div>
-          <div class="skill-row">Redis</div>
-          <div class="skill-row">Amazon Redshift</div>
-          <div class="skill-row">ChromaDB</div>
+          <div class="skill-row"><img class="skill-icon" src="assets/mysql.svg" alt=""><span>MySQL</span></div>
+          <div class="skill-row"><img class="skill-icon" src="assets/mongodb.svg" alt=""><span>MongoDB</span></div>
+          <div class="skill-row"><img class="skill-icon" src="https://cdn.simpleicons.org/redis/FF4438" alt=""><span>Redis</span></div>
+          <div class="skill-row"><img class="skill-icon" src="assets/aws.png" alt=""><span>Amazon Redshift</span></div>
+          <div class="skill-row"><span class="skill-icon skill-icon-generic">◆</span><span>ChromaDB</span></div>
         </div>
       </div>
 
       <div class="skill-category">
         <div class="skill-cat-name">Backend / Frontend</div>
         <div class="skill-list">
-          <div class="skill-row">Node.js / Express</div>
-          <div class="skill-row">React</div>
-          <div class="skill-row">REST APIs / JWT</div>
-          <div class="skill-row">Streamlit</div>
-          <div class="skill-row">Flutter</div>
+          <div class="skill-row"><img class="skill-icon" src="https://cdn.simpleicons.org/nodedotjs/339933" alt=""><span>Node.js / Express</span></div>
+          <div class="skill-row"><img class="skill-icon" src="https://cdn.simpleicons.org/react/61DAFB" alt=""><span>React</span></div>
+          <div class="skill-row"><span class="skill-icon skill-icon-generic">▤</span><span>REST APIs / JWT</span></div>
+          <div class="skill-row"><img class="skill-icon" src="assets/streamlit.png" alt=""><span>Streamlit</span></div>
+          <div class="skill-row"><img class="skill-icon" src="https://cdn.simpleicons.org/flutter/02569B" alt=""><span>Flutter</span></div>
         </div>
       </div>
     </div>
@@ -1350,9 +1704,14 @@
   <!-- EDUCATION -->
   <section class="section" id="education">
     <div class="section-header">
-      <span class="section-prompt">~$</span>
-      <span class="section-cmd">cat <span>education.md</span></span>
-      <div class="section-line"></div>
+      <div class="section-eyebrow">
+        <span class="section-prompt">~$</span>
+        <span class="section-cmd">cat <span>education.md</span></span>
+      </div>
+      <div class="section-title-row">
+        <h2 class="section-title">Education</h2>
+        <div class="section-line"></div>
+      </div>
     </div>
 
     <div class="card">
@@ -1397,9 +1756,14 @@
   <!-- ACHIEVEMENTS -->
   <section class="section" id="achievements">
     <div class="section-header">
-      <span class="section-prompt">~$</span>
-      <span class="section-cmd">ls <span>./achievements --verbose</span></span>
-      <div class="section-line"></div>
+      <div class="section-eyebrow">
+        <span class="section-prompt">~$</span>
+        <span class="section-cmd">ls <span>./achievements --verbose</span></span>
+      </div>
+      <div class="section-title-row">
+        <h2 class="section-title">Achievements</h2>
+        <div class="section-line"></div>
+      </div>
     </div>
 
     <div class="card">
@@ -1456,9 +1820,14 @@
   <!-- CONTACT -->
   <section class="section" id="contact">
     <div class="section-header">
-      <span class="section-prompt">~$</span>
-      <span class="section-cmd">ping <span>anagha --verbose</span></span>
-      <div class="section-line"></div>
+      <div class="section-eyebrow">
+        <span class="section-prompt">~$</span>
+        <span class="section-cmd">ping <span>anagha --verbose</span></span>
+      </div>
+      <div class="section-title-row">
+        <h2 class="section-title">Get in touch</h2>
+        <div class="section-line"></div>
+      </div>
     </div>
 
     <div class="contact-grid">
@@ -1617,17 +1986,15 @@ animateParticles();
 // ── HERO TYPEWRITER ──
 const heroLines = [
   { text: '$ whoami', class: 'tw-prompt' },
-  { text: 'Anagha Hambir Langhe', class: 'tw-big' },
-  { text: '# MS Computer Science · The University of Texas at Dallas', class: 'tw-comment' },
+  { text: 'Hi, I\'m Anagha 👋', class: 'tw-big' },
+  { text: '# I build data & ML systems that work in the real world.', class: 'tw-comment' },
   { text: '' },
-  { text: '$ cat profile.json', class: 'tw-prompt' },
-  { text: '{', class: 'tw-cmd' },
-  { text: '  <span class="tw-key">"status"</span>: <span class="tw-val">"actively seeking full time roles // graduated may 2026"</span>,', class: 'tw-cmd' },
-  { text: '  <span class="tw-key">"focus"</span>: <span class="tw-str">["Data Engineering", "ML Engineering", "SWE"]</span>,', class: 'tw-cmd' },
-  { text: '  <span class="tw-key">"location"</span>: <span class="tw-str">"Dallas, TX"</span>,', class: 'tw-cmd' },
-  { text: '}', class: 'tw-cmd' },
+  { text: '$ ./intro.sh', class: 'tw-prompt' },
+  { text: 'Master\'s student in Computer Science at UT Dallas, graduating May 2026.', class: 'tw-cmd' },
+  { text: 'I\'ve worked on ML pipelines for autonomous vehicles at DRDO, a smart-cradle', class: 'tw-cmd' },
+  { text: 'IoT product with a patent, and real-time data + RAG systems on my own.', class: 'tw-cmd' },
   { text: '' },
-  { text: '# links', class: 'tw-comment', links: true },
+  { text: '# currently looking for full-time Data / ML / Software roles', class: 'tw-comment' },
 ];
 
 const heroOut = document.getElementById('hero-output');
@@ -1673,6 +2040,29 @@ function renderHeroLine() {
 }
 
 setTimeout(renderHeroLine, 600);
+
+// ── SKILL ICON FALLBACK ──
+document.querySelectorAll('.skill-icon').forEach(img => {
+  img.addEventListener('error', () => {
+    const span = document.createElement('span');
+    span.className = 'skill-icon-generic';
+    span.textContent = '◆';
+    img.replaceWith(span);
+  }, { once: true });
+});
+
+// ── HERO CURSOR GLOW ──
+const heroGlow = document.getElementById('hero-glow');
+const heroSectionEl = document.getElementById('hero');
+if (heroGlow && heroSectionEl && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+  heroSectionEl.addEventListener('mousemove', (e) => {
+    const r = heroSectionEl.getBoundingClientRect();
+    heroGlow.style.left = (e.clientX - r.left) + 'px';
+    heroGlow.style.top = (e.clientY - r.top) + 'px';
+    heroGlow.style.opacity = '1';
+  });
+  heroSectionEl.addEventListener('mouseleave', () => { heroGlow.style.opacity = '0'; });
+}
 
 // ── ACTIVE NAV ON SCROLL ──
 const navItems = document.querySelectorAll('.nav-item[data-section]');
