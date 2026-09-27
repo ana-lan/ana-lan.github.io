@@ -1499,6 +1499,30 @@
     <div class="flagship-project">
       <div class="card-bar">
         <div class="dot dot-red"></div><div class="dot dot-yellow"></div><div class="dot dot-green"></div>
+        <span class="card-bar-title">downshift.py</span>
+        <span class="card-bar-tag tag-green">★ new — LLM cost optimization / dev tools</span>
+      </div>
+      <div class="card-body">
+        <div class="flagship-header">
+          <div class="proj-name-lg">Downshift <a href="https://github.com/ana-lan/downshift" class="proj-link" target="_blank">↗ github </a><a href="https://downshift-llm.vercel.app/" class="proj-link" target="_blank">↗ app </a><a href="https://pypi.org/project/downshift/" class="proj-link" target="_blank">↗ pypi</a></div>
+          <div class="proj-date">Sep 2026</div>
+        </div>
+        <div class="proj-desc-lg">Cut LLM costs per PR. Downshift finds every LLM call in a Python repo, tests cheaper models against evals written for each call site, recommends the safe downgrades, and shows the projected cost impact of every pull request.</div>
+        <ul class="exp-bullets">
+          <li>Built an <strong>AST scanner</strong> that finds OpenAI and Anthropic call sites and resolves models through constants, imports, env vars and parameter defaults; paired it with an <strong>IBM Bob</strong> auditor for runtime-only models and shared helpers.</li>
+          <li>Runs per-call-site evals on the baseline and cheaper candidates and recommends the cheapest model that holds the quality bar; on the demo app, <strong>3 of 8</strong> call sites downgraded for an <strong>18%</strong> projected cost cut with no drop in pass rate.</li>
+          <li>Shipped as a <strong>PyPI package</strong> and a <strong>GitHub Action</strong> that posts the projected monthly cost change on every PR; case studies on mem0 and OrchestrAI surfaced <strong>4.5–7.6×</strong> more spend than static analysis alone.</li>
+        </ul>
+        <div class="proj-stack">
+          <span class="proj-tag">Python</span><span class="proj-tag">AST</span><span class="proj-tag">LLM Evals</span>
+          <span class="proj-tag">IBM Bob</span><span class="proj-tag">GitHub Actions</span><span class="proj-tag">Next.js</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="flagship-project">
+      <div class="card-bar">
+        <div class="dot dot-red"></div><div class="dot dot-yellow"></div><div class="dot dot-green"></div>
         <span class="card-bar-title">activation_lens.py</span>
         <span class="card-bar-tag tag-cyan">★ flagship — mech interp / AI safety</span>
       </div>
@@ -1990,10 +2014,8 @@ const heroLines = [
   { text: '# I build data & ML systems that work in the real world.', class: 'tw-comment' },
   { text: '' },
   { text: '$ ./intro.sh', class: 'tw-prompt' },
-  { text: 'Master\'s student in Computer Science at UT Dallas, graduating May 2026.', class: 'tw-cmd' },
-  { text: 'I\'ve worked on ML pipelines for autonomous vehicles at DRDO, a smart-cradle', class: 'tw-cmd' },
-  { text: 'IoT product with a patent, and real-time data + RAG systems on my own.', class: 'tw-cmd' },
-  { text: '' },
+  { text: 'MS in Computer Science from UT Dallas, graduated May 2026.', class: 'tw-cmd' },
+  { text: 'I\'ve built perception pipelines for autonomous vehicles at DRDO, a patented smart-cradle IoT product, and lately, LLM tools like Downshift and ActivationLens.', class: 'tw-cmd' },  { text: '' },
   { text: '# currently looking for full-time Data / ML / Software roles', class: 'tw-comment' },
 ];
 
