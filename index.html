@@ -1316,7 +1316,7 @@
         <div style="width:6px;height:6px;border-radius:50%;background:var(--green);box-shadow:0 0 6px var(--green);animation:blink 2s ease-in-out infinite;"></div>
         <span style="color:var(--green)">open to work</span>
       </div>
-      <div style="color:var(--muted)">Dallas, TX · May 2026</div>
+      <div style="color:var(--muted)">Anywhere in the US</div>
     </div>
   </nav>
 
@@ -1544,6 +1544,30 @@
       </div>
     </div>
 
+    <div class="flagship-project">
+      <div class="card-bar">
+        <div class="dot dot-red"></div><div class="dot dot-yellow"></div><div class="dot dot-green"></div>
+        <span class="card-bar-title">documentsync_ai.py</span>
+        <span class="card-bar-tag tag-blue">★ LLM serving / RAG / Kubernetes</span>
+      </div>
+      <div class="card-body">
+        <div class="flagship-header">
+          <div class="proj-name-lg">DocumentSync AI <a href="https://github.com/ana-lan/DocumentSyncAI-RAG-based-QA-for-Documents" class="proj-link" target="_blank">↗ github</a></div>
+          <div class="proj-date">Jul 2026 – Oct 2026</div>
+        </div>
+        <div class="proj-desc-lg">A RAG system for document Q&A, self-hosted with vLLM on Google Kubernetes Engine and benchmarked for throughput, latency, and quantization.</div>
+        <ul class="exp-bullets">
+          <li>Built a RAG pipeline (LangChain, ChromaDB, sentence-transformers) with PDF upload and source-cited answers; RAGAS evals across 4 chunking strategies showed fixed-1024 lifted context precision <strong>59%</strong> and recall <strong>3.6×</strong> over 256-token chunks.</li>
+          <li>Self-hosted Qwen2.5-7B with <strong>vLLM</strong> on an NVIDIA L4: continuous batching scaled throughput <strong>17×</strong> (17 to 298 tok/s), prefix caching cut p95 time-to-first-token <strong>67%</strong>, and FP8 added <strong>49%</strong> throughput with no accuracy loss.</li>
+          <li>Deployed on <strong>GKE</strong> with separate CPU and GPU node pools, a LoadBalancer and HPA autoscaling; one OpenAI-compatible client switches between Groq and vLLM through env vars.</li>
+        </ul>
+        <div class="proj-stack">
+          <span class="proj-tag">vLLM</span><span class="proj-tag">LangChain</span><span class="proj-tag">ChromaDB</span>
+          <span class="proj-tag">RAGAS</span><span class="proj-tag">Docker</span><span class="proj-tag">Kubernetes</span><span class="proj-tag">GKE</span>
+        </div>
+      </div>
+    </div>
+
     <div class="projects-grid">
 
       <div class="project-card">
@@ -1555,19 +1579,6 @@
           <div class="proj-stack">
             <span class="proj-tag">Python</span><span class="proj-tag">RAG</span><span class="proj-tag">LLM Evals</span>
             <span class="proj-tag">Full-Stack</span>
-          </div>
-        </div>
-      </div>
-
-      <div class="project-card">
-        <div class="proj-accent"></div>
-        <div class="proj-body">
-          <div class="proj-name">DocumentSync AI <a href="https://github.com/ana-lan/DocumentSync-Ai-RAG-Based-QA-System-for-Document-Analysis" class="proj-link" target="_blank">↗ github</a></div>
-          <div class="proj-date">Jun 2025 – Jul 2025</div>
-          <div class="proj-desc">RAG pipeline (LangChain + ChromaDB + Sentence Transformers) ingesting 30 ArXiv PDFs across 4 chunking strategies. Evaluated with RAGAS across 120 LLM-as-judge calls — best strategy improved context precision by 59% and context recall 3×.</div>
-          <div class="proj-stack">
-            <span class="proj-tag">LangChain</span><span class="proj-tag">RAG</span><span class="proj-tag">ChromaDB</span>
-            <span class="proj-tag">RAGAS</span><span class="proj-tag">Sentence Transformers</span>
           </div>
         </div>
       </div>
@@ -1869,7 +1880,7 @@
           <div style="color:var(--cyan)">→ ML Engineering</div>
           <div style="color:var(--cyan)">→ Data Engineering</div>
           <div style="color:var(--cyan)">→ Software Development</div>
-          <div style="margin-top:8px;color:var(--muted);font-size:11px;">Available from May 2026</div>
+          <div style="margin-top:8px;color:var(--muted);font-size:11px;">Can start immediately</div>
         </div>
       </div>
 
